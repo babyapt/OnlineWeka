@@ -1,0 +1,21 @@
+@relation 'weather.symbolic-weka.filters.unsupervised.attribute.Remove-V-R1,3'
+
+@attribute outlook {sunny,overcast,rainy}
+@attribute humidity {high,normal}
+
+@data
+
+sunny,high
+sunny,high
+overcast,high
+rainy,high
+rainy,normal
+rainy,normal
+overcast,normal
+sunny,high
+sunny,normal
+rainy,normal
+sunny,normal
+overcast,high
+overcast,normal
+rainy,high

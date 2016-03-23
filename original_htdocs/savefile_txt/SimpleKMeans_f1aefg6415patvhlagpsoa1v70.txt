@@ -1,0 +1,72 @@
+
+kMeans
+======
+
+Number of iterations: 6
+Within cluster sum of squared errors: 3815.191310259778
+Missing values globally replaced with mean/mode
+
+Cluster centroids:
+                                                                            Cluster#
+Attribute                                         Full Data                        0                        1
+                                                      (691)                    (314)                    (377)
+=============================================================================================================
+encounter_id                                 117270226.8654           156927996.8344            84239617.3952
+patient_nbr                                    38357586.932            54639793.8439            24796279.3183
+race                                              Caucasian                Caucasian                Caucasian
+gender                                               Female                     Male                   Female
+age                                                 [10-20)                  [10-20)                  [10-20)
+admission_type_id                                    1.7627                   1.7134                   1.8037
+discharge_disposition_id                             2.1505                   1.6911                   2.5332
+admission_source_id                                  5.6107                   5.6624                   5.5676
+time_in_hospital                                      3.191                   3.7484                   2.7268
+payer_code                                               MD                       MD                       MD
+medical_specialty                  Pediatrics-Endocrinology Pediatrics-Endocrinology Pediatrics-Endocrinology
+num_lab_procedures                                   43.097                  40.9841                  44.8568
+num_procedures                                       0.3357                   0.5541                   0.1538
+num_medications                                      8.2779                   9.7962                   7.0133
+number_outpatient                                    0.1708                   0.2611                   0.0955
+number_emergency                                     0.1563                    0.172                   0.1432
+number_inpatient                                     0.5326                   0.6783                   0.4111
+diag_1                                               250.13                   250.13                   250.13
+diag_2                                                276.0                    276.0                    276.0
+diag_3                                                276.0                    276.0                    276.0
+number_diagnoses                                     3.9479                   5.0096                   3.0637
+max_glu_serum                                          None                     None                     None
+A1Cresult                                              None                     None                       >8
+metformin                                                No                       No                       No
+repaglinide                                              No                       No                       No
+nateglinide                                              No                       No                       No
+chlorpropamide                                           No                       No                       No
+glimepiride                                              No                       No                       No
+acetohexamide                                            No                       No                       No
+glipizide                                                No                       No                       No
+glyburide                                                No                       No                       No
+tolbutamide                                              No                       No                       No
+pioglitazone                                             No                       No                       No
+rosiglitazone                                            No                       No                       No
+acarbose                                                 No                       No                       No
+miglitol                                                 No                       No                       No
+troglitazone                                             No                       No                       No
+tolazamide                                               No                       No                       No
+examide                                                  No                       No                       No
+citoglipton                                              No                       No                       No
+insulin                                              Steady                   Steady                   Steady
+glyburide-metformin                                      No                       No                       No
+glipizide-metformin                                      No                       No                       No
+glimepiride-pioglitazone                                 No                       No                       No
+metformin-rosiglitazone                                  No                       No                       No
+metformin-pioglitazone                                   No                       No                       No
+change                                                   No                       No                       No
+diabetesMed                                             Yes                      Yes                      Yes
+readmitted                                               NO                       NO                       NO
+
+
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0      314 ( 45%)
+1      377 ( 55%)
+

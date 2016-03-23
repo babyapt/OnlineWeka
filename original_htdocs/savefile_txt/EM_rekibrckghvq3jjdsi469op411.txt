@@ -1,0 +1,45 @@
+
+EM
+==
+
+Number of clusters selected by cross validation: 1
+
+
+                   Cluster
+Attribute                0
+                       (1)
+===========================
+houseSize
+  mean                 3132
+  std. dev.        606.5241
+
+lotSize
+  mean           11788.1429
+  std. dev.       3703.5526
+
+bedrooms
+  mean                    5
+  std. dev.          0.7559
+
+granite
+  mean               0.4286
+  std. dev.          0.4949
+
+bathroom
+  mean               0.7143
+  std. dev.          0.4518
+
+sellingPrice
+  mean          223957.1429
+  std. dev.      43562.4628
+
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0      7 (100%)
+
+
+Log likelihood: -32.04249
+

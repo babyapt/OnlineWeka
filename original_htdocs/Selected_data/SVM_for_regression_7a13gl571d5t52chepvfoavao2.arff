@@ -1,0 +1,14 @@
+@relation 'sale-weka.filters.unsupervised.attribute.Remove-V-R5,1,3,6'
+
+@attribute pie {0,1}
+@attribute crab {0,1}
+@attribute cheese {0,1}
+@attribute apple {0,1}
+
+@data
+
+0,1,1,0
+1,0,1,1
+1,0,0,1
+0,0,1,0
+0,1,1,1

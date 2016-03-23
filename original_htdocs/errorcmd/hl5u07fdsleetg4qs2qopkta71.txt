@@ -1,0 +1,52 @@
+
+No training file and no object input file given.
+
+General options:
+
+-h or -help
+	Output help information.
+-synopsis or -info
+	Output synopsis for clusterer (use in conjunction  with -h)
+-t <name of training file>
+	Sets training file.
+-T <name of test file>
+	Sets test file.
+-l <name of input file>
+	Sets model input file.
+-d <name of output file>
+	Sets model output file.
+-p <attribute range>
+	Output predictions. Predictions are for training file
+	if only training file is specified,
+	otherwise predictions are for the test file.
+	The range specifies attribute values to be output
+	with the predictions. Use '-p 0' for none.
+-x <number of folds>
+	Only Distribution Clusterers can be cross validated.
+-s <random number seed>
+	Sets the seed for randomizing the data in cross-validation
+-c <class index>
+	Set class attribute. If supplied, class is ignored
+	during clustering but is used in a classes to
+	clusters evaluation.
+-g <name of graph file>
+	Outputs the graph representation of the clusterer to the file.
+
+Options specific to weka.clusterers.HierarchicalClusterer:
+
+-D
+	If set, classifier is run in debug mode and
+	may output additional info to the console
+-B
+	If set, distance is interpreted as branch length
+	otherwise it is node height.
+-N <Nr Of Clusters>
+	number of clusters
+-P
+	Flag to indicate the cluster should be printed in Newick format.
+-L [SINGLE|COMPLETE|AVERAGE|MEAN|CENTROID|WARD|ADJCOMLPETE|NEIGHBOR_JOINING]
+Link type (Single, Complete, Average, Mean, Centroid, Ward, Adjusted complete, Neighbor joining)
+-A <classname and options>
+	Distance function to use.
+	(default: weka.core.EuclideanDistance)
+

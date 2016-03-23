@@ -1,0 +1,74 @@
+
+Options: -L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H a
+
+Sigmoid Node 0
+    Inputs    Weights
+    Threshold    -0.03705694361354827
+    Node 2    0.4435950424845222
+    Node 3    0.4877927548746681
+Sigmoid Node 1
+    Inputs    Weights
+    Threshold    0.03757089541161521
+    Node 2    -0.4700853570643661
+    Node 3    -0.46405617348894096
+Sigmoid Node 2
+    Inputs    Weights
+    Threshold    -1.149263978929275
+    Attrib Outlook=Sunny    0.6512027162296055
+    Attrib Outlook=Overcast    -0.369471082494669
+    Attrib Outlook=Rainy    0.7725740876054039
+Sigmoid Node 3
+    Inputs    Weights
+    Threshold    -1.1430220711177812
+    Attrib Outlook=Sunny    0.6566734988890454
+    Attrib Outlook=Overcast    -0.4093809387719715
+    Attrib Outlook=Rainy    0.8065584025056972
+Class FALSE
+    Input
+    Node 0
+Class TRUE
+    Input
+    Node 1
+
+
+Time taken to build model: 0.03 seconds
+Time taken to test model on training data: 0 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances           8               57.1429 %
+Incorrectly Classified Instances         6               42.8571 %
+Kappa statistic                          0
+Mean absolute error                      0.4907
+Root mean squared error                  0.4937
+Relative absolute error                 99.9284 %
+Root relative squared error             99.7528 %
+Total Number of Instances               14
+
+
+=== Confusion Matrix ===
+
+ a b   <-- classified as
+ 8 0 | a = FALSE
+ 6 0 | b = TRUE
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances           4               28.5714 %
+Incorrectly Classified Instances        10               71.4286 %
+Kappa statistic                         -0.5217
+Mean absolute error                      0.6169
+Root mean squared error                  0.6269
+Relative absolute error                122.2201 %
+Root relative squared error            123.0782 %
+Total Number of Instances               14
+
+
+=== Confusion Matrix ===
+
+ a b   <-- classified as
+ 4 4 | a = FALSE
+ 6 0 | b = TRUE
+

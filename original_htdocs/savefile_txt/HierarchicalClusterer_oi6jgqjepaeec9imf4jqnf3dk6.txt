@@ -1,0 +1,11 @@
+Cluster 0
+((0.0:1,0.0:1):0.41421,(1.0:1,1.0:1):0.41421)
+
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0      4 ( 80%)
+1      1 ( 20%)
+

@@ -1,0 +1,38 @@
+
+Options: -S 0 -R 1.0E-8
+
+
+Linear Regression Model
+
+sellingPrice =
+
+    -27.5893 * houseSize +
+      5.9086 * lotSize +
+  46252.575  * bedrooms +
+   9042.1129 * granite +
+  42152.5233 * bathroom +
+ -23612.229
+
+Time taken to build model: 0.01 seconds
+Time taken to test model on training data: 0 seconds
+
+=== Error on training data ===
+
+Correlation coefficient                  0.9964
+Mean absolute error                   3215.4253
+Root mean squared error               4053.9787
+Relative absolute error                  8.8582 %
+Root relative squared error              8.458  %
+Total Number of Instances               17
+
+
+
+=== Cross-validation ===
+
+Correlation coefficient                  0.9143
+Mean absolute error                  10137.1909
+Root mean squared error              21640.4403
+Relative absolute error                 25.9957 %
+Root relative squared error             42.4178 %
+Total Number of Instances               17
+

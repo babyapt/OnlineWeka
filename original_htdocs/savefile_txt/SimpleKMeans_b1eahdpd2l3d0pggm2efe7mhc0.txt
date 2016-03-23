@@ -1,0 +1,25 @@
+
+kMeans
+======
+
+Number of iterations: 6
+Within cluster sum of squared errors: 5.179687509974783
+Missing values globally replaced with mean/mode
+
+Cluster centroids:
+                           Cluster#
+Attribute      Full Data          0          1
+                   (150)      (100)       (50)
+==============================================
+petallength       3.7587      4.906      1.464
+petalwidth        1.1987      1.676      0.244
+
+
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0      100 ( 67%)
+1       50 ( 33%)
+

@@ -1,0 +1,66 @@
+
+
+body, tr, p, td, br , div, h1 {  font-size   : 15px; }
+
+#myOutput, #showdata {	
+    /*color       : #2233ff;*/
+    font-size   : 12px;
+    /*font-weight : bold;*/
+}
+
+#bt1{
+	/*  Button Link Color  */
+	color: #ffffff;
+	background-color: #0065ff;
+	text-shadow: none;
+
+}
+#header{
+	/*  Button Link Color  */
+	color: #ffffff;
+	background-color: #3d4ab5;
+	text-shadow: none;
+
+}
+
+#title{
+
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+
+}
+#head{
+
+	font-size: 14px;
+	font-weight: bold;
+
+}
+#description{
+
+
+	font-size: 14px;
+	font-weight: normal;
+
+}
+iframe:focus { 
+    margin: 0 auto;
+}
+
+li{
+padding-left:10px; 
+border-left:0px;
+margin-left:0px;
+}
+
+
+
+@media only screen and (min-device-width: 640px) {
+
+ 
+    body {
+        font-size: 12px; /* 18 22 */
+    }
+
+
+}

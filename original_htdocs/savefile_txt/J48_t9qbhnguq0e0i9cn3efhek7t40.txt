@@ -1,0 +1,55 @@
+
+Options: -C 0.25 -M 2
+
+J48 pruned tree
+------------------
+
+patient_nbr <= 21043746: No (336.0/73.0)
+patient_nbr > 21043746: Ch (355.0/148.0)
+
+Number of Leaves  : 	2
+
+Size of the tree : 	3
+
+
+Time taken to build model: 0.04 seconds
+Time taken to test model on training data: 0.01 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         470               68.0174 %
+Incorrectly Classified Instances       221               31.9826 %
+Kappa statistic                          0.3637
+Mean absolute error                      0.4152
+Root mean squared error                  0.4556
+Relative absolute error                 86.1186 %
+Root relative squared error             92.8051 %
+Total Number of Instances              691
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 207  73 |   a = Ch
+ 148 263 |   b = No
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances         469               67.8726 %
+Incorrectly Classified Instances       222               32.1274 %
+Kappa statistic                          0.3604
+Mean absolute error                      0.4164
+Root mean squared error                  0.4571
+Relative absolute error                 86.364  %
+Root relative squared error             93.1149 %
+Total Number of Instances              691
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 206  74 |   a = Ch
+ 148 263 |   b = No
+

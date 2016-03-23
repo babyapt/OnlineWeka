@@ -1,0 +1,15 @@
+...*
+optimization finished, #iter = 18
+obj = -2.7499995111467816, rho = 1.4989633185185185
+nSV = 5, nBSV = 1
+Total nSV = 5
+...*
+optimization finished, #iter = 18
+obj = -2.7499995111467816, rho = 1.4989633185185185
+nSV = 5, nBSV = 1
+Total nSV = 5
+...*
+optimization finished, #iter = 18
+obj = -2.7499995111467816, rho = 1.4989633185185185
+nSV = 5, nBSV = 1
+Total nSV = 5

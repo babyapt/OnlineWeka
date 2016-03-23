@@ -1,0 +1,55 @@
+
+Options: -C 0.25 -M 2
+
+J48 pruned tree
+------------------
+: Sunny (14.0/9.0)
+
+Number of Leaves  : 	1
+
+Size of the tree : 	1
+
+
+Time taken to build model: 0.01 seconds
+Time taken to test model on training data: 0 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances           5               35.7143 %
+Incorrectly Classified Instances         9               64.2857 %
+Kappa statistic                          0
+Mean absolute error                      0.4422
+Root mean squared error                  0.4702
+Relative absolute error                 99.9096 %
+Root relative squared error             99.992  %
+Total Number of Instances               14
+
+
+=== Confusion Matrix ===
+
+ a b c   <-- classified as
+ 5 0 0 | a = Sunny
+ 4 0 0 | b = Overcast
+ 5 0 0 | c = Rainy
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances           0                0      %
+Incorrectly Classified Instances        14              100      %
+Kappa statistic                         -0.5556
+Mean absolute error                      0.4676
+Root mean squared error                  0.4986
+Relative absolute error                100.9821 %
+Root relative squared error            101.1647 %
+Total Number of Instances               14
+
+
+=== Confusion Matrix ===
+
+ a b c   <-- classified as
+ 0 0 5 | a = Sunny
+ 4 0 0 | b = Overcast
+ 5 0 0 | c = Rainy
+

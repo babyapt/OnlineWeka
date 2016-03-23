@@ -1,0 +1,123 @@
+
+Options: -L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H a
+
+Sigmoid Node 0
+    Inputs    Weights
+    Threshold    -4.597967080790812
+    Node 2    2.433270074007242
+    Node 3    2.0546443732203774
+    Node 4    1.364159803860347
+    Node 5    2.6974766889493536
+    Node 6    3.9083227090643557
+Sigmoid Node 1
+    Inputs    Weights
+    Threshold    4.60125196001115
+    Node 2    -2.404522637307116
+    Node 3    -2.053274495614413
+    Node 4    -1.3799864297539497
+    Node 5    -2.756274547604192
+    Node 6    -3.877948258791869
+Sigmoid Node 2
+    Inputs    Weights
+    Threshold    -0.15507980215013525
+    Attrib outlook=sunny    -1.3234644779136855
+    Attrib outlook=overcast    1.660267528039988
+    Attrib outlook=rainy    -0.32078025528655973
+    Attrib temperature=hot    -0.28731224569818364
+    Attrib temperature=mild    1.1811903600979567
+    Attrib temperature=cool    -0.7853150475848839
+    Attrib humidity    2.808930687905
+    Attrib windy    1.9190213581350706
+Sigmoid Node 3
+    Inputs    Weights
+    Threshold    -0.18031675012278095
+    Attrib outlook=sunny    -1.152451401022834
+    Attrib outlook=overcast    1.5760227701429672
+    Attrib outlook=rainy    -0.3257840027922377
+    Attrib temperature=hot    -0.2760307631136812
+    Attrib temperature=mild    1.0450876279343024
+    Attrib temperature=cool    -0.6318819517738499
+    Attrib humidity    2.450477460387541
+    Attrib windy    1.6782512926468698
+Sigmoid Node 4
+    Inputs    Weights
+    Threshold    -0.3554146745674961
+    Attrib outlook=sunny    -0.46574052680925
+    Attrib outlook=overcast    1.4382073898080858
+    Attrib outlook=rainy    -0.6194183985830626
+    Attrib temperature=hot    -0.0670794406887235
+    Attrib temperature=mild    0.6337484752708609
+    Attrib temperature=cool    -0.20814280117719502
+    Attrib humidity    1.9824665847930494
+    Attrib windy    0.9946423645131898
+Sigmoid Node 5
+    Inputs    Weights
+    Threshold    -0.06888405078498423
+    Attrib outlook=sunny    -1.398206421909648
+    Attrib outlook=overcast    1.8084944112736527
+    Attrib outlook=rainy    -0.3199726960276289
+    Attrib temperature=hot    -0.30358216357714296
+    Attrib temperature=mild    1.2908528760310658
+    Attrib temperature=cool    -0.8921466424329773
+    Attrib humidity    3.1090049574873406
+    Attrib windy    2.0747113212966855
+Sigmoid Node 6
+    Inputs    Weights
+    Threshold    0.04399369934901502
+    Attrib outlook=sunny    -1.801821342790139
+    Attrib outlook=overcast    2.254454702444456
+    Attrib outlook=rainy    -0.4009571750650124
+    Attrib temperature=hot    -0.41558677311306425
+    Attrib temperature=mild    1.5891702859476848
+    Attrib temperature=cool    -1.2545441906677204
+    Attrib humidity    4.11931066616433
+    Attrib windy    2.7408510063872638
+Class yes
+    Input
+    Node 0
+Class no
+    Input
+    Node 1
+
+
+Time taken to build model: 0.03 seconds
+Time taken to test model on training data: 0 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances          14              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1
+Mean absolute error                      0.0245
+Root mean squared error                  0.0354
+Relative absolute error                  5.2713 %
+Root relative squared error              7.3845 %
+Total Number of Instances               14
+
+
+=== Confusion Matrix ===
+
+ a b   <-- classified as
+ 9 0 | a = yes
+ 0 5 | b = no
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances          10               71.4286 %
+Incorrectly Classified Instances         4               28.5714 %
+Kappa statistic                          0.3778
+Mean absolute error                      0.287
+Root mean squared error                  0.5268
+Relative absolute error                 60.2616 %
+Root relative squared error            106.7798 %
+Total Number of Instances               14
+
+
+=== Confusion Matrix ===
+
+ a b   <-- classified as
+ 7 2 | a = yes
+ 2 3 | b = no
+

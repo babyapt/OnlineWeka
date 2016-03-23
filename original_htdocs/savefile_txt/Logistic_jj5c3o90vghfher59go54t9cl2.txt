@@ -1,0 +1,68 @@
+
+Options: -R 1.0E8 -M -1
+
+Logistic Regression with ridge parameter of 1.0E8
+Coefficients...
+                         Class
+Variable           Iris-setosa  Iris-versicolor
+===============================================
+sepallength                  0                0
+sepalwidth                   0                0
+petallength                  0                0
+petalwidth                   0                0
+Intercept                    0                0
+
+
+Odds Ratios...
+                         Class
+Variable           Iris-setosa  Iris-versicolor
+===============================================
+sepallength                  1                1
+sepalwidth                   1                1
+petallength                  1                1
+petalwidth                   1                1
+
+
+Time taken to build model: 0.02 seconds
+Time taken to test model on training data: 0 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances          50               33.3333 %
+Incorrectly Classified Instances       100               66.6667 %
+Kappa statistic                          0
+Mean absolute error                      0.4444
+Root mean squared error                  0.4714
+Relative absolute error                100      %
+Root relative squared error            100      %
+Total Number of Instances              150
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+ 50  0  0 |  a = Iris-setosa
+ 50  0  0 |  b = Iris-versicolor
+ 50  0  0 |  c = Iris-virginica
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances          50               33.3333 %
+Incorrectly Classified Instances       100               66.6667 %
+Kappa statistic                          0
+Mean absolute error                      0.4444
+Root mean squared error                  0.4714
+Relative absolute error                100      %
+Root relative squared error            100      %
+Total Number of Instances              150
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+ 50  0  0 |  a = Iris-setosa
+ 50  0  0 |  b = Iris-versicolor
+ 50  0  0 |  c = Iris-virginica
+

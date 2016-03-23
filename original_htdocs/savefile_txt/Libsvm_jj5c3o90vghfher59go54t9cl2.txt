@@ -1,0 +1,101 @@
+..*
+optimization finished, #iter = 38
+obj = -6.654761279375765, rho = -0.2378162730687646
+nSV = 10, nBSV = 4
+Total nSV = 10
+.*
+optimization finished, #iter = 16
+obj = -4.690476060404208, rho = -0.42863859953703687
+nSV = 7, nBSV = 3
+Total nSV = 7
+..*
+optimization finished, #iter = 26
+obj = -5.428571193536232, rho = -0.14299417485901497
+nSV = 8, nBSV = 3
+Total nSV = 8
+..*
+optimization finished, #iter = 25
+obj = -5.264705799082878, rho = -0.29437804869684503
+nSV = 9, nBSV = 4
+Total nSV = 9
+.....*
+optimization finished, #iter = 60
+obj = -4.5833327304223825, rho = -0.3327096056284532
+nSV = 9, nBSV = 3
+Total nSV = 9
+....*
+optimization finished, #iter = 55
+obj = -5.666666142705926, rho = -0.3329663398508337
+nSV = 10, nBSV = 3
+Total nSV = 10
+.*
+optimization finished, #iter = 19
+obj = -5.968749967729249, rho = -0.3750480109739367
+nSV = 8, nBSV = 4
+Total nSV = 8
+...*
+optimization finished, #iter = 40
+obj = -6.6547616106732566, rho = 0.23809547424792
+nSV = 10, nBSV = 4
+Total nSV = 10
+...*
+optimization finished, #iter = 39
+obj = -6.2857140446045285, rho = -0.42846747671789237
+nSV = 10, nBSV = 4
+Total nSV = 10
+...*
+optimization finished, #iter = 39
+obj = -6.654761419670245, rho = 0.2378404898033112
+nSV = 10, nBSV = 4
+Total nSV = 10
+..*
+optimization finished, #iter = 34
+obj = -6.642856585798338, rho = 0.28512305043270986
+nSV = 10, nBSV = 4
+Total nSV = 10
+
+Options: -S 0 -K 0 -D 3 -G 0.0 -R 0.0 -N 0.5 -M 40 -C 1.0 -E 0.001 -P 0.1 -W 2.0 -seed 1
+
+LibSVM wrapper, original code by Yasser EL-Manzalawy (= WLSVM)
+
+Time taken to build model: 0.01 seconds
+Time taken to test model on training data: 0 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances          11               78.5714 %
+Incorrectly Classified Instances         3               21.4286 %
+Kappa statistic                          0.4615
+Mean absolute error                      0.2143
+Root mean squared error                  0.4629
+Relative absolute error                 46.1538 %
+Root relative squared error             96.5422 %
+Total Number of Instances               14
+
+
+=== Confusion Matrix ===
+
+ a b   <-- classified as
+ 9 0 | a = yes
+ 3 2 | b = no
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances           8               57.1429 %
+Incorrectly Classified Instances         6               42.8571 %
+Kappa statistic                         -0.0244
+Mean absolute error                      0.4286
+Root mean squared error                  0.6547
+Relative absolute error                 90      %
+Root relative squared error            132.6919 %
+Total Number of Instances               14
+
+
+=== Confusion Matrix ===
+
+ a b   <-- classified as
+ 7 2 | a = yes
+ 4 1 | b = no
+

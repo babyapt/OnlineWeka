@@ -1,0 +1,286 @@
+
+EM
+==
+
+Number of clusters selected by cross validation: 1
+
+
+              Cluster
+Attribute           0
+                  (1)
+======================
+Outlook
+  Sunny              6
+  Overcast           5
+  Rainy              6
+  [total]           17
+Temperature
+  mean         73.5714
+  std. dev.     6.3326
+
+Humidity
+  mean         81.6429
+  std. dev.     9.9111
+
+Windy
+  FALSE              9
+  TRUE               7
+  [total]           16
+Play
+  no                 6
+  yes               10
+  [total]           16
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0      14 (100%)
+
+
+Log likelihood: -9.4063
+
+
+EM
+==
+
+Number of clusters selected by cross validation: 1
+
+
+              Cluster
+Attribute           0
+                  (1)
+======================
+Outlook
+  Sunny              6
+  Overcast           5
+  Rainy              6
+  [total]           17
+Temperature
+  mean         73.5714
+  std. dev.     6.3326
+
+Humidity
+  mean         81.6429
+  std. dev.     9.9111
+
+Windy
+  FALSE              9
+  TRUE               7
+  [total]           16
+Play
+  no                 6
+  yes               10
+  [total]           16
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0      14 (100%)
+
+
+Log likelihood: -9.4063
+
+
+EM
+==
+
+Number of clusters selected by cross validation: 1
+
+
+      Cluster
+Attribute   0
+           (1)
+==============
+crab
+  0          4
+  1          3
+  [total]    7
+milk
+  0          2
+  1          5
+  [total]    7
+cheese
+  0          2
+  1          5
+  [total]    7
+bread
+  0          2
+  1          5
+  [total]    7
+pie
+  0          4
+  1          3
+  [total]    7
+apple
+  0          3
+  1          4
+  [total]    7
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0      5 (100%)
+
+
+Log likelihood: -3.58326
+
+
+EM
+==
+
+Number of clusters selected by cross validation: 4
+
+
+                    Cluster
+Attribute                 0       1       2       3
+                     (0.32)  (0.33)   (0.2)  (0.14)
+====================================================
+sepallength
+  mean                 5.897   5.006  6.9426  6.1304
+  std. dev.           0.5279  0.3489   0.498  0.2943
+
+sepalwidth
+  mean                2.7519   3.418  3.1103  2.8088
+  std. dev.           0.3103  0.3772  0.2952  0.2361
+
+petallength
+  mean                4.2267   1.464  5.8559  5.0993
+  std. dev.            0.445  0.1718  0.4626  0.2462
+
+petalwidth
+  mean                1.3134   0.244  2.1495  1.8254
+  std. dev.           0.1864  0.1061   0.232  0.2152
+
+class
+  Iris-setosa              1      51       1       1
+  Iris-versicolor    48.1125       1  1.0182  3.8693
+  Iris-virginica      2.0983       1 31.0375 19.8641
+  [total]            51.2108      53 33.0557 24.7335
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0       48 ( 32%)
+1       50 ( 33%)
+2       29 ( 19%)
+3       23 ( 15%)
+
+
+Log likelihood: -2.03504
+
+
+EM
+==
+
+Number of clusters selected by cross validation: 2
+
+
+             Cluster
+Attribute          0      1
+              (0.33) (0.67)
+============================
+petallength
+  mean         1.4638  4.905
+  std. dev.    0.1715 0.8232
+
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0       50 ( 33%)
+1      100 ( 67%)
+
+
+Log likelihood: -1.3369
+
+
+EM
+==
+
+Number of clusters selected by cross validation: 1
+
+
+         Cluster
+Attribute      0
+             (1)
+=================
+outlook
+  sunny         6
+  overcast      5
+  rainy         6
+  [total]      17
+temperature
+  hot           5
+  mild          7
+  cool          5
+  [total]      17
+humidity
+  high          8
+  normal        8
+  [total]      16
+windy
+  TRUE          7
+  FALSE         9
+  [total]      16
+play
+  yes          10
+  no            6
+  [total]      16
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0      14 (100%)
+
+
+Log likelihood: -4.20178
+
+
+EM
+==
+
+Number of clusters selected by cross validation: 1
+
+
+         Cluster
+Attribute      0
+             (1)
+=================
+outlook
+  sunny         6
+  overcast      5
+  rainy         6
+  [total]      17
+temperature
+  hot           5
+  mild          7
+  cool          5
+  [total]      17
+humidity
+  high          8
+  normal        8
+  [total]      16
+windy
+  TRUE          7
+  FALSE         9
+  [total]      16
+play
+  yes          10
+  no            6
+  [total]      16
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0      14 (100%)
+
+
+Log likelihood: -4.20178
+

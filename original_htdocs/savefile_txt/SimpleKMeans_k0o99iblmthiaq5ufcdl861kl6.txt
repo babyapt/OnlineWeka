@@ -1,0 +1,31 @@
+
+kMeans
+======
+
+Number of iterations: 7
+Within cluster sum of squared errors: 138.7197292138184
+Missing values globally replaced with mean/mode
+
+Cluster centroids:
+                                Cluster#
+Attribute           Full Data          0          1
+                        (440)      (222)      (218)
+===================================================
+Instance_number         219.5   328.4955   108.5046
+Fresh              12000.2977  11760.964 12244.0229
+Milk                5796.2659   4486.491  7130.0734
+Grocery             7951.2773  6447.9144  9482.2248
+Frozen              3071.9318  3295.2883  2844.4771
+Detergents_Paper    2881.4932  2190.6847  3584.9771
+Delicassen          1524.8705   1198.036  1857.7018
+Cluster              cluster0   cluster0   cluster0
+
+
+
+
+=== Clustering stats for training data ===
+
+Clustered Instances
+0      222 ( 50%)
+1      218 ( 50%)
+

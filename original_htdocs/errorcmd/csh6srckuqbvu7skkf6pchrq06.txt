@@ -1,0 +1,12 @@
+weka.core.UnsupportedAttributeTypeException: weka.attributeSelection.InfoGainAttributeEval: Cannot handle numeric class!
+	at weka.core.Capabilities.test(Capabilities.java:954)
+	at weka.core.Capabilities.test(Capabilities.java:1110)
+	at weka.core.Capabilities.test(Capabilities.java:1023)
+	at weka.core.Capabilities.testWithFail(Capabilities.java:1302)
+	at weka.attributeSelection.InfoGainAttributeEval.buildEvaluator(InfoGainAttributeEval.java:260)
+	at weka.attributeSelection.AttributeSelection.SelectAttributes(AttributeSelection.java:597)
+	at weka.attributeSelection.AttributeSelection.SelectAttributes(AttributeSelection.java:954)
+	at weka.attributeSelection.AttributeSelection.SelectAttributes(AttributeSelection.java:339)
+	at weka.attributeSelection.ASEvaluation.runEvaluator(ASEvaluation.java:161)
+	at weka.attributeSelection.InfoGainAttributeEval.main(InfoGainAttributeEval.java:468)
+weka.attributeSelection.InfoGainAttributeEval: Cannot handle numeric class!
