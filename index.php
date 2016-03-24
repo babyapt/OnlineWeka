@@ -347,7 +347,7 @@
           });
         }
         function updateProgress(i){
-          if(i<100){}
+          if(i<100){
             $('#progressBar').html(i+'%');
           } else {
             if($('#uploadCheck').val()==1){
