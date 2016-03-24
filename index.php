@@ -350,7 +350,7 @@
         }
         function updateProgress(i){
           if(i<100){
-            $('#progressBar').html(i+'%');
+            $('#progressBar').html(i+'%').removeClass('progress-bar-danger progress-bar-warning');
           } else {
             if($('#uploadCheck').val()==1){
               $('#progressBar').html('Upload Complete').addClass('progress-bar-success');
