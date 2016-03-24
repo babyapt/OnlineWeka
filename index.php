@@ -298,8 +298,10 @@
               </div>
             </div>
           </div>
+          <div class="modal-footer" id="uploadCancelTab">
+            <button type="button" class="btn btn-default" id="uploadCancel" data-dismiss="modal">Cancel</button>
+          </div>
         </div>
-
       </div>
     </div>
     <input type="hidden" id="uploadCheck" value="0" />
@@ -352,18 +354,28 @@
           } else {
             if($('#uploadCheck').val()==1){
               $('#progressBar').html('Upload Complete').addClass('progress-bar-success');
+              $('#uploadCancelTab').hide();
             } else {
               $('#progressBar').html('Upload Failed').addClass('progress-bar-danger');
               setTimeout(function(){
-                $('#progressBar').html('Trying to upload again... Please wait.').addClass('progress-bar-warning');
+                $('#progressBar').html('Trying to upload again... Please wait.').removeClass('progress-bar-danger').addClass('progress-bar-warning');
                 setTimeout(function(){
                   $('#uploadForm').submit();
+                  setTimeout(function(){
+                    uploadProgress();
+                  },100);
                 },2000);
-              },3000);
+              },1500);
             }
           }
           $('#progressBar').width(i+'%');
         }
+        $('#uploadCancel').click(function(){
+          $('#hiddenFrame').attr('src','index.php');
+          setTimeout(function(){$('#uploadCheck').val(0);},500);
+          $('#file').val('');
+          $('#simFileName').val('');
+        });
         $('#hiddenFrame').load(function(){
           $('#uploadCheck').val(1);
         });
