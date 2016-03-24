@@ -302,6 +302,7 @@
 
       </div>
     </div>
+    <input type="hidden" id="uploadCheck" value="0" />
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -346,15 +347,25 @@
           });
         }
         function updateProgress(i){
-          if(i<100)
+          if(i<100){}
             $('#progressBar').html(i+'%');
-          else {
-            $('#progressBar').html('Upload Complete').addClass('progress-bar-success');
+          } else {
+            if($('#uploadCheck').val()==1){
+              $('#progressBar').html('Upload Complete').addClass('progress-bar-success');
+            } else {
+              $('#progressBar').html('Upload Failed').addClass('progress-bar-danger');
+              setTimeout(function(){
+                $('#progressBar').html('Trying to upload again... Please wait.').addClass('progress-bar-warning');
+                setTimeout(function(){
+                  $('#uploadForm').submit();
+                },2000);
+              },3000);
+            }
           }
           $('#progressBar').width(i+'%');
         }
         $('#hiddenFrame').load(function(){
-          alert('CC');
+          $('#uploadCheck').val(1);
         });
         $('#progress').modal({
             backdrop: 'static',
