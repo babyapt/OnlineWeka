@@ -80,6 +80,7 @@
                     <p class="lead">
                       <form action="weka.php" method="POST" id="uploadForm" target="hiddenFrame" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="upload">
+                        <input type="hidden" value="uploadForm" name="<?php echo ini_get("session.upload_progress.name"); ?>">
                         <input type="file" id="file" name="file" style="display: none;" />
                       </form>
                       <div class="col-lg-3"></div>
