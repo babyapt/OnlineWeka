@@ -338,6 +338,9 @@
         });
         function uploadProgress(){
           $.post('upload_progress.php',{},function(data){
+            if(data!=100){
+              self.setTimeout(function(){uploadProgress();},500);
+            }
             updateProgress(data);
           });
         }
@@ -377,7 +380,7 @@
             } else {
               $('#uploadForm').submit();
               $('#progress').modal('show');
-              uploadProgress();
+              setTimeout(function(){uploadProgress();},1000);
             }
           }
         })
