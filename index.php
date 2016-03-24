@@ -353,6 +353,9 @@
           }
           $('#progressBar').width(i+'%');
         }
+        $('#hiddenFrame').load(function(){
+          alert('CC');
+        });
         $('#progress').modal({
             backdrop: 'static',
             keyboard: false,
