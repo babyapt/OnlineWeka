@@ -45,3 +45,17 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+ClamAV/clambc.exe
+ClamAV/ssleay32.dll
+ClamAV/sigtool.exe
+ClamAV/database/main.cvd
+ClamAV/database/daily.cld
+ClamAV/database/bytecode.cvd
+ClamAV/freshclam.exe
+ClamAV/libclamunrar_iface.dll
+ClamAV/libeay32.dll
+ClamAV/libclamunrar.dll
+ClamAV/libclamav.dll
+ClamAV/database/mirrors.dat
+ClamAV/database/Makefile.in
+ClamAV/database/Makefile.am
