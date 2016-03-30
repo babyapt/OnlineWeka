@@ -80,6 +80,7 @@
                     <p class="lead">
                       <form action="weka.php" method="POST" id="uploadForm" target="hiddenFrame" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="upload">
+                        <input type="hidden" name="noui" value="true">
                         <input type="hidden" value="uploadForm" name="<?php echo ini_get("session.upload_progress.name"); ?>">
                         <input type="file" id="file" name="file" style="display: none;" />
                       </form>
@@ -346,6 +347,8 @@
               self.setTimeout(function(){uploadProgress();},500);
             }
             updateProgress(data);
+          }).fail(function(){
+            uploadProgress();
           });
         }
         function updateProgress(i){
@@ -407,12 +410,23 @@
             } else {
               $('#uploadForm').submit();
               $('#progress').modal('show');
-              setTimeout(function(){uploadProgress();},1000);
+              setTimeout(function(){uploadProgress();},100);
             }
           }
         })
     });
-
+    function scanVirus(){
+      $('#progressBar').html('Virus Scanning').removeClass('progress-bar-success');
+    }
+    function scanComplete(st){
+      if(st==1){
+        $('#progressBar').html('Preparing your file for preprocess.').addClass('progress-bar-info');
+      } else if(st==2){
+        $('#progressBar').html('Moving to next section.').removeClass('progress-bar-info').addClass('progress-bar-success');
+      } else {
+        $('#progressBar').html('Infected file found, Please check your file.').addClass('progress-bar-danger').removeClass('active progress-bar-striped');
+      }
+    }
     </script>
 
 </body>

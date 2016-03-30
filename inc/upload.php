@@ -1,23 +1,26 @@
 <?php
 session_start();
 $target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["file"]["name"]);
+$origin_file = $target_dir . basename($_FILES["file"]["name"]);
+$target_file = $target_dir . session_id();
 $uploadOk = 1;
-$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+$fileType = pathinfo($origin_file,PATHINFO_EXTENSION);
+$target_file .= ".$fileType";
 // Allow certain file formats
-echo $fileType;
 if($fileType != "arff" && $fileType != "csv") {
-  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+  echo "<script>alert('Sorry, only ARFF & CSV files are allowed.');</script>";
   $uploadOk = 0;
 }
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+    echo "<script>alert('Sorry, your file was not uploaded.');</script>";
 // if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
+  if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+      $_SESSION['relation'] = basename($_FILES["file"]["name"]);
+      echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
+      echo "<script>setTimeout(function(){parent.scanVirus();location.href='?action=scanVirus&noui=true';},1000);</script>";
+  } else {
+      echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
+  }
 }
 ?>
