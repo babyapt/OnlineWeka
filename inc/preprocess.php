@@ -1,4 +1,37 @@
 <?php
+  if (!function_exists('stats_standard_deviation')) {
+    /**
+     * This user-land implementation follows the implementation quite strictly;
+     * it does not attempt to improve the code or algorithm in any way. It will
+     * raise a warning if you have fewer than 2 values in your array, just like
+     * the extension does (although as an E_USER_WARNING, not E_WARNING).
+     *
+     * @param array $a
+     * @param bool $sample [optional] Defaults to false
+     * @return float|bool The standard deviation or false on error.
+     */
+    function stats_standard_deviation(array $a, $sample = false) {
+        $n = count($a);
+        if ($n === 0) {
+            trigger_error("The array has zero elements", E_USER_WARNING);
+            return false;
+        }
+        if ($sample && $n === 1) {
+            trigger_error("The array has only 1 element", E_USER_WARNING);
+            return false;
+        }
+        $mean = array_sum($a) / $n;
+        $carry = 0.0;
+        foreach ($a as $val) {
+            $d = ((double) $val) - $mean;
+            $carry += $d * $d;
+        };
+        if ($sample) {
+           --$n;
+        }
+        return sqrt($carry / $n);
+    }
+  }
   $path = 'uploads/';
   $filename = session_id().'.arff';
   $file = $path.$filename;
@@ -41,14 +74,72 @@
       $js .= "console.log('[status: $status] Skip : [Line ".($key+1)."] $val');\r\n";
     }
   }
+  $infoAttr = NULL;
+  foreach ($attribute as $akey => $avalue) {
+    if(strtolower(trim($avalue['type']))=='real'||strtolower(trim($avalue['type']))=='numeric'){
+      $predata = NULL;
+      $attrData = $checker =NULL;
+      $predata['missing'] = 0;
+      foreach ($data as $dkey => $dvalue) {
+        $attrData[] = $dvalue[$akey];
+        if(trim($dvalue[$akey])!=''){
+          $checker[$dvalue[$akey]]++;
+          /*if(!$predata['min']) $predata['min'] = $dvalue[$akey]; else $predata['min'] = $predata['min']>$dvalue[$akey]?$dvalue[$akey]:$predata['min'];
+          if(!$predata['max']) $predata['max'] = $dvalue[$akey]; else $predata['max'] = $predata['max']<$dvalue[$akey]?$dvalue[$akey]:$predata['max'];
+          $predata['sum'] = $dvalue[$akey];*/
+        } else {
+          $predata['missing']++;
+        }
+      }
+      foreach ($checker as $ckey => $cvalue){
+        if($cvalue==1) $predata['unique']++; else $predata['distinct']++;
+      }
+      $predata['distinct'] += $predata['unique'];
+      $missper = $predata['missing']<1?0:round(($predata['missing']/count($attrData)*100),0);
+      $uniqueper = $predata['unique']<1?0:round(($predata['unique']/count($attrData)*100),0);
+      $predata['missing'] = $predata['missing']." ($missper%)";
+      $predata['unique'] = $predata['unique']." ($uniqueper%)";
+      $predata['min'] = min($attrData);
+      $predata['max'] = max($attrData);
+      $predata['sum'] = array_sum($attrData);
+      $predata['mean'] = round($predata['sum']/count($attrData),3);
+      $predata['stddev'] = round(stats_standard_deviation($attrData,true),3);
+      $predata['count'] = count($attrData);
+      $infoAttr[$akey] = $predata;
+    }
+  }
 ?>
 <script>
   <?php echo $js; ?>
+  function selectAttr(o,t,n,data){
+    if(t=='real'||t=='numeric'){
+      var jd = $.parseJSON(data);
+      $('#name').html(n);
+      $('#type').html('Numeric');
+      $('#missing').html(jd.missing);
+      $('#distinct').html(jd.distinct);
+      $('#unique').html(jd.unique);
+      $('#min').html(jd.min);
+      $('#max').html(jd.max);
+      $('#mean').html(jd.mean);
+      $('#stddev').html(jd.stddev);
+      $('#nominal').hide();
+      $('#numeric').show();
+    } else {
+      $('#nominal').show();
+      $('#numeric').hide();
+    }
+    $('.attrList').removeClass('active');
+    $(o).addClass('active');
+  }
+  $(function(){
+    $('#numeric, #nominal').hide();
+  });
 </script>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Precrocess : <?php echo $relation; ?></h1>
+                    <h1 class="page-header">Preprocess : <?php echo $relation; ?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -118,16 +209,16 @@
                                         <table class="table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th></th>
+                                                    <th style="width:100px;">No</th>
+                                                    <th style="width:20px;"></th>
                                                     <th>Name</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                               <?php
                                               foreach ($attribute as $key => $value) {
-                                                echo '<tr>';
-                                                echo "<td>".($key+1)."</td><td><input type='checkbox' id='$key'></td><td>".$value['name']."</td>";
+                                                echo "<tr class='attrList' onclick='selectAttr(this,`".$value['type']."`,`".$value['name']."`,`".json_encode($infoAttr[$key])."`);'>";
+                                                echo "<td class='text-right'>".($key+1)."</td><td><input type='checkbox' id='$key'></td><td>".$value['name']."</td>";
                                                 echo '</tr>';
                                               }
                                               ?>
@@ -139,118 +230,6 @@
                                 <!-- /.col-lg-4 (nested) -->
                             </div>
                             <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <ul class="timeline">
-                                <li>
-                                    <div class="timeline-badge"><i class="fa fa-check"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
-                                            </p>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia pariatur? Est cum veniam excepturi. Maiores praesentium, porro voluptas suscipit facere rem dicta, debitis.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolorem quibusdam, tenetur commodi provident cumque magni voluptatem libero, quis rerum. Fugiat esse debitis optio, tempore. Animi officiis alias, officia repellendus.</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium maiores odit qui est tempora eos, nostrum provident explicabo dignissimos debitis vel! Adipisci eius voluptates, ad aut recusandae minus eaque facere.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus numquam facilis enim eaque, tenetur nam id qui vel velit similique nihil iure molestias aliquam, voluptatem totam quaerat, magni commodi quisquam.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge info"><i class="fa fa-save"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam debitis amet, beatae consequuntur impedit nulla qui! Laborum, atque.</p>
-                                            <hr>
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fa fa-gear"></i>  <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Action</a>
-                                                    </li>
-                                                    <li><a href="#">Another action</a>
-                                                    </li>
-                                                    <li><a href="#">Something else here</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Separated link</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi fuga odio quibusdam. Iure expedita, incidunt unde quis nam! Quod, quisquam. Officia quam qui adipisci quas consequuntur nostrum sequi. Consequuntur, commodi.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -282,6 +261,136 @@
                           </div>
                       </div>
                       <!-- /.panel-heading -->
+                      <div class="panel-body">
+                          <div class="row">
+                              <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <div class="row">
+                                                    <div class="col-xs-3">
+                                                        <i class="fa fa-at fa-4x"></i>
+                                                    </div>
+                                                    <div class="col-xs-9 text-right">
+                                                        <div class="big">Name</div>
+                                                        <div id="name"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="panel panel-green">
+                                            <div class="panel-heading">
+                                                <div class="row">
+                                                    <div class="col-xs-3">
+                                                        <i class="fa fa-sitemap fa-4x"></i>
+                                                    </div>
+                                                    <div class="col-xs-9 text-right">
+                                                        <div class="big">Type</div>
+                                                        <div id="type"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <div class="row">
+                                                    <div class="col-xs-3">
+                                                        <i class="fa fa-question fa-4x"></i>
+                                                    </div>
+                                                    <div class="col-xs-9 text-right">
+                                                        <div class="big">Missing</div>
+                                                        <div id="missing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="panel panel-green">
+                                            <div class="panel-heading">
+                                                <div class="row">
+                                                    <div class="col-xs-3">
+                                                        <i class="fa fa-tags fa-4x"></i>
+                                                    </div>
+                                                    <div class="col-xs-9 text-right">
+                                                        <div class="big">Distinct</div>
+                                                        <div id="distinct"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="panel panel-green">
+                                            <div class="panel-heading">
+                                                <div class="row">
+                                                    <div class="col-xs-3">
+                                                        <i class="fa fa-tag fa-4x"></i>
+                                                    </div>
+                                                    <div class="col-xs-9 text-right">
+                                                        <div class="big">Unique</div>
+                                                        <div id="unique"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                                  <div class="table-responsive" id="numeric">
+                                      <table class="table table-bordered table-hover table-striped">
+                                          <thead>
+                                              <tr>
+                                                  <th>Statistic</th>
+                                                  <th>Value</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td>Minimum</td>
+                                              <td id="min"></td>
+                                            </tr>
+                                            <tr>
+                                              <td>Maximum</td>
+                                              <td id="max"></td>
+                                            </tr>
+                                            <tr>
+                                              <td>Mean</td>
+                                              <td id="mean"></td>
+                                            </tr>
+                                            <tr>
+                                              <td>StdDev</td>
+                                              <td id="stddev"></td>
+                                            </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                                  <!-- /.table-responsive -->
+                                  <div class="table-responsive" id="nominal">
+                                      <table class="table table-bordered table-hover table-striped">
+                                          <thead>
+                                              <tr>
+                                                  <th>No.</th>
+                                                  <th>Label</th>
+                                                  <th>Count</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                                  <!-- /.table-responsive -->
+                              </div>
+                              <!-- /.col-lg-4 (nested) -->
+                          </div>
+                          <!-- /.row -->
+                      </div>
+                      <!-- /.panel-body -->
                       <div class="panel-body">
                           <div id="morris-area-chart"></div>
                       </div>
