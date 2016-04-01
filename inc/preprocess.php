@@ -32,6 +32,47 @@
         return sqrt($carry / $n);
     }
   }
+  function histrogram($a){
+    $n = count($a);
+    if ($n === 0) {
+        trigger_error("The array has zero elements", E_USER_WARNING);
+        return false;
+    }
+    $min = min($a);
+    $max = max($a);
+    $nBar = 8;
+    $range = ($max-$min)/$nBar;
+    $bar[0]['from'] = (float) $min;
+    for($i=0;$i<$nBar;$i++){
+      if($i>0)
+        $bar[$i]['from'] = round($bar[($i-1)]['to'],3);
+      if($i==($nBar-1))
+        $bar[$i]['to'] = (float) $max;
+      else
+        $bar[$i]['to'] = round(($bar[$i]['from'])+$range,3);
+      $bar[$i]['name'] = '['.$bar[$i]['from'].','.$bar[$i]['to'].']';
+      $bar[$i]['count'] = 0;
+    }
+    foreach ($a as $akey => $avalue) {
+      for($i=0;$i<$nBar;$i++){
+        if($i==0){
+          if($avalue==$bar[$i]['from']){
+            $bar[$i]['count']++;
+          }
+        }
+        if($avalue>$bar[$i]['from']&&$avalue<=$bar[$i]['to']){
+          $bar[$i]['count']++;
+        }
+      }
+    }
+    $data = NULL;
+    foreach ($bar as $key => $value) {
+      $predata['name'] = $bar[$key]['name'];
+      $predata['count'] = $bar[$key]['count'];
+      $data[] = $predata;
+    }
+    return json_encode($data);
+  }
   $path = 'uploads/';
   $filename = session_id().'.arff';
   $file = $path.$filename;
@@ -74,11 +115,11 @@
       $js .= "console.log('[status: $status] Skip : [Line ".($key+1)."] $val');\r\n";
     }
   }
-  $infoAttr = NULL;
+  $infoAttr = $dataAttr = NULL;
   foreach ($attribute as $akey => $avalue) {
     if(strtolower(trim($avalue['type']))=='real'||strtolower(trim($avalue['type']))=='numeric'){
       $predata = NULL;
-      $attrData = $checker =NULL;
+      $checker = $attrData = NULL;
       $predata['missing'] = 0;
       foreach ($data as $dkey => $dvalue) {
         $attrData[] = $dvalue[$akey];
@@ -105,6 +146,7 @@
       $predata['mean'] = round($predata['sum']/count($attrData),3);
       $predata['stddev'] = round(stats_standard_deviation($attrData,true),3);
       $predata['count'] = count($attrData);
+      $dataAttr[$akey] = $attrData;
       $infoAttr[$akey] = $predata;
     }
   }
@@ -131,6 +173,10 @@
     }
     $('.attrList').removeClass('active');
     $(o).addClass('active');
+  }
+  function genVis(a){
+    var jd = $.parseJSON(a);
+    vis.setData(jd);
   }
   $(function(){
     $('#numeric, #nominal').hide();
@@ -220,7 +266,7 @@
                                             <tbody>
                                               <?php
                                               foreach ($attribute as $key => $value) {
-                                                echo "<tr class='attrList' id='row$key' onclick='selectAttr(this,`".$value['type']."`,`".$value['name']."`,`".json_encode($infoAttr[$key])."`);'>";
+                                                echo "<tr class='attrList' id='row$key' onclick='selectAttr(this,`".$value['type']."`,`".$value['name']."`,`".json_encode($infoAttr[$key])."`);genVis(`".histrogram($dataAttr[$key])."`)'>";
                                                 echo "<td class='text-right'>".($key+1)."</td><td><input type='checkbox' id='$key'></td><td>".$value['name']."</td>";
                                                 echo '</tr>';
                                               }
@@ -395,7 +441,15 @@
                       </div>
                       <!-- /.panel-body -->
                       <div class="panel-body">
+                          <div id="vis-morris-bar-chart"></div>
+                      </div>
+                      <!-- /.panel-body -->
+                      <div class="panel-body">
                           <div id="morris-area-chart"></div>
+                      </div>
+                      <!-- /.panel-body -->
+                      <div class="panel-body">
+                          <div id="morris-bar-chart"></div>
                       </div>
                       <!-- /.panel-body -->
                   </div>
@@ -594,3 +648,13 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
+<script>
+var vis = Morris.Bar({
+  element: 'vis-morris-bar-chart',
+  stacked: true,
+  xkey: 'name',
+  ykeys: ['count'],
+  labels: ['Count'],
+  resize: true
+});
+</script>
