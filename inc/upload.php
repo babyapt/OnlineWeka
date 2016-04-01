@@ -18,7 +18,7 @@ if ($uploadOk == 0) {
   if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
       $_SESSION['relation'] = basename($_FILES["file"]["name"]);
       echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
-      echo "<script>setTimeout(function(){parent.scanVirus();location.href='?action=scanVirus&noui=true';},1000);</script>";
+      echo "<script>parent.$('#progressBar').html('Upload Complete').addClass('progress-bar-success');parent.$('#uploadCancelTab').hide();setTimeout(function(){parent.scanVirus();location.href='?action=scanVirus&noui=true';},500);</script>";
   } else {
       echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
   }

@@ -134,6 +134,9 @@
   }
   $(function(){
     $('#numeric, #nominal').hide();
+    if($('#row0')){
+      $('#row0').click();
+    }
   });
 </script>
         <div id="page-wrapper">
@@ -217,7 +220,7 @@
                                             <tbody>
                                               <?php
                                               foreach ($attribute as $key => $value) {
-                                                echo "<tr class='attrList' onclick='selectAttr(this,`".$value['type']."`,`".$value['name']."`,`".json_encode($infoAttr[$key])."`);'>";
+                                                echo "<tr class='attrList' id='row$key' onclick='selectAttr(this,`".$value['type']."`,`".$value['name']."`,`".json_encode($infoAttr[$key])."`);'>";
                                                 echo "<td class='text-right'>".($key+1)."</td><td><input type='checkbox' id='$key'></td><td>".$value['name']."</td>";
                                                 echo '</tr>';
                                               }
