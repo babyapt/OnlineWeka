@@ -1,4 +1,5 @@
 <?php
+  $start = microtime();
   if (!function_exists('stats_standard_deviation')) {
     /**
      * This user-land implementation follows the implementation quite strictly;
@@ -53,7 +54,7 @@
       $bar[$i]['name'] = '['.$bar[$i]['from'].','.$bar[$i]['to'].']';
       $bar[$i]['count'] = 0;
     }
-    foreach ($a as $akey => $avalue) {
+    /*foreach ($a as $akey => $avalue) {
       for($i=0;$i<$nBar;$i++){
         if($i==0){
           if($avalue==$bar[$i]['from']){
@@ -62,6 +63,19 @@
         }
         if($avalue>$bar[$i]['from']&&$avalue<=$bar[$i]['to']){
           $bar[$i]['count']++;
+        }
+      }
+    }*/
+    $acv = array_count_values($a);
+    foreach ($acv as $akey => $avalue) {
+      for($i=0;$i<$nBar;$i++){
+        if($i==0){
+          if($akey==$bar[$i]['from']){
+            $bar[$i]['count']+=$avalue;
+          }
+        }
+        if($akey>$bar[$i]['from']&&$akey<=$bar[$i]['to']){
+          $bar[$i]['count']+=$avalue;
         }
       }
     }
@@ -658,3 +672,4 @@ var vis = Morris.Bar({
   resize: true
 });
 </script>
+<?php    echo (microtime()-$start).'</br>'; ?>
